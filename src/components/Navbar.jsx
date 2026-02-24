@@ -9,7 +9,9 @@ import { CiMenuBurger } from "react-icons/ci";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const handleSearch = () => {};
+  const handleSearch = (e) => {
+    e.preventDefault()
+  };
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
@@ -21,7 +23,7 @@ const Navbar = () => {
       </div>
       <div className="flex-1 hidden lg:flex">
         <form
-          onSubmit={handleSearch}
+          onSubmit={(e) => handleSearch(e)}
           className="self-center h-full w-full relative"
         >
           <CiSearch
@@ -93,7 +95,7 @@ const Navbar = () => {
 
         <div className="w-full p-4">
           <form
-            onSubmit={handleSearch}
+            onSubmit={(e) => handleSearch(e)}
             className="self-center h-full w-full relative"
           >
             <CiSearch
