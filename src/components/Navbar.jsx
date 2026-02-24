@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full h-16 bg-white flex items-center justify-between px-4  gap-15 ">
+    <nav className="w-full h-16 bg-white/20  flex items-center justify-between px-4  gap-15 fixed z-999 shadow-md ">
       <div className="min-w-[25%]">
         <img src={velora} className="w-50" />
       </div>
