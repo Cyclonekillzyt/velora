@@ -11,9 +11,6 @@ export const AppProvider = ({ children }) => {
       : category === "new"
         ? products.filter((p) => p.isNew)
         : products.filter((p) => p.category === category);
-  products.map((el) => {
-   console.log(el, el.category)
- })
 
   return (
     <AppContext.Provider value={{ setCategory, filteredProducts, category }}>

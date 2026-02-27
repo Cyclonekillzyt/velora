@@ -1,6 +1,13 @@
+import { useProducts } from "../contexts/ProductsContext";
+import { useNavigate } from "react-router-dom";
 const ProductsCard = ({ data }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${data._id}`);
+  };
   return (
-    <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group">
+    <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group" onClick={handleClick}>
 
       <div className="aspect-square overflow-hidden">
         <img

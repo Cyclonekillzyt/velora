@@ -1,6 +1,8 @@
 import model from "../assets/HeroImage.jpg"
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div
       className="w-full h-screen  flex px-20 pt-20 bg-cover"
@@ -17,7 +19,7 @@ const Hero = () => {
             Discover the latest trends in fashion and elevate your style with
             our curated collection of clothing, accessories, and more.
           </p>
-          <button className="w-40 h-12 bg-amber-300 text-black font-medium rounded-md hover:bg-amber-500 transition-all cursor-pointer">
+          <button className="w-40 h-12 bg-amber-300 text-black font-medium rounded-md hover:bg-amber-500 transition-all cursor-pointer" onClick={() => navigate("/products")}> 
             Shop Now
           </button>
         </div>

@@ -5,21 +5,26 @@ import { CiHeart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 
 const Navbar = () => {
+  const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     e.preventDefault()
   };
+  const navigate = useNavigate();
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
-    <nav className="w-full h-16 bg-white/20  flex items-center justify-between px-4  gap-15 fixed z-999 shadow-md ">
+    <nav className="w-full h-16 bg-white/30 flex items-center justify-between px-4  gap-15 fixed z-999 shadow-md ">
+      <div className="w-full h-full absolute left-0 top-0 -z-10 backdrop-blur-2xl" ></div>
       <div className="min-w-[25%]">
-        <img src={velora} className="w-50" />
+        <img src={velora} className="w-50" onClick={() => navigate("/")} />
       </div>
       <div className="flex-1 hidden lg:flex">
         <form
@@ -43,14 +48,18 @@ const Navbar = () => {
         </form>
       </div>
       <div className="min-w-[30%] hidden lg:flex h-full  items-center justify-end  gap-10 pr-10">
-        <div className="flex items-center gap-2 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer relative" onClick={() => console.log(cart)}>
           <CiShoppingCart size="25" />
+          {cart.length > 0 ? <div className="absolute -top-1 left-3 bg-red-500 rounded-full size-4 flex items-center justify-center ">
+            <span className="text-white text-sm">{cart.length}</span>
+          </div> : console.log(cart) }
+          
           <p>Chart</p>
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
           <CiHeart size="25" />
           <p>Favorites</p>
-        </div>
+        </div> 
         <div className="flex items-center gap-2 cursor-pointer">
           <CiUser size="25" />
           <p>Account</p>
@@ -70,7 +79,7 @@ const Navbar = () => {
         ></div>
       )}
       <div
-        className={`fixed top-0 right-0 h-full w-72 bg-black/90 flex flex-col justify-between  text-white backdrop-blur-md transform transition-transform duration-300 z-50 ${isOpen ? "translate-x-0" : "translate-x-full  "}`}
+        className={`fixed top-0 right-0 h-full w-72 bg-black/90 flex flex-col justify-between  text-white backdrop-blur-md transform transition-transform duration-300 z-50 ${isOpen ? "translate-x-0" : "translate-x-full  "} `}
       >
         <ul className="flex flex-col mt-2">
           <li className="flex items-center gap-4 px-8 py-5 border-b border-white/10 hover:bg-white/5 transition-colors cursor-pointer">
