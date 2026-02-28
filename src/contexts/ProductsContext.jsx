@@ -11,6 +11,7 @@ export const ProductsProvider = ({ children }) => {
   
   const productDetails = products.find((p) => p._id === currentProduct);
 
+
   return (
     <ProductsContext.Provider
       value={{

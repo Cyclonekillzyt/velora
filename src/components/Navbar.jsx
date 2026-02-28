@@ -48,11 +48,11 @@ const Navbar = () => {
         </form>
       </div>
       <div className="min-w-[30%] hidden lg:flex h-full  items-center justify-end  gap-10 pr-10">
-        <div className="flex items-center gap-2 cursor-pointer relative" onClick={() => console.log(cart)}>
+        <div className="flex items-center gap-2 cursor-pointer relative" onClick={() => navigate("/cart")}>
           <CiShoppingCart size="25" />
           {cart.length > 0 ? <div className="absolute -top-1 left-3 bg-red-500 rounded-full size-4 flex items-center justify-center ">
             <span className="text-white text-sm">{cart.length}</span>
-          </div> : console.log(cart) }
+          </div> : <span></span> }
           
           <p>Chart</p>
         </div>

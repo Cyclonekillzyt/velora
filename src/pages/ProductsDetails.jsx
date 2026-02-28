@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "../contexts/ProductsContext";
 import { useParams } from "react-router-dom";
 import ColorPalletes from "../components/ColorPalltes";
@@ -12,7 +12,7 @@ const ProductsDetails = () => {
   const { productDetails, setCurrentProduct, productColor, orderSize } =
     useProducts();
   const { id } = useParams();
-  const quantity = 1;
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     setCurrentProduct(id);
@@ -21,9 +21,9 @@ const ProductsDetails = () => {
 
   const addItemToCart = () => {
     const cartItem = {
-      id: productDetails._id,
-      size: orderSize,
-      color: productDetails.colors[productColor],
+      _id: productDetails._id,
+      size: orderSize || "S",
+      color: productColor,
       quantity: quantity,
     };
 
@@ -84,8 +84,34 @@ const ProductsDetails = () => {
               ))}
             </div>
           </div>
+          <div className="flex items-center justify-between mt-6">
+            <p className="text-gray-400 text-md">Quantity</p>
 
-          <button className="mt-6 bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer" onClick={addItemToCart}>
+            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+              <button
+                onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+                className="px-4 py-2 hover:bg-gray-100 transition"
+              >
+                −
+              </button>
+
+              <span className="px-6 py-2 font-semibold text-gray-800">
+                {quantity}
+              </span>
+
+              <button
+                onClick={() => setQuantity((prev) => prev + 1)}
+                className="px-4 py-2 hover:bg-gray-100 transition"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <button
+            className="mt-6 bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer"
+            onClick={addItemToCart}
+          >
             Add to Cart
           </button>
         </div>
