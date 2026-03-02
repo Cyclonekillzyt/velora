@@ -4,33 +4,41 @@ import { IoMdTrash } from "react-icons/io";
 import { useCart } from "../contexts/CartContext";
 
 const CartItem = ({ item }) => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
-    useCart();
+  const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
+
   const cartData = {
     _id: item._id,
     size: item.size,
     color: item.color,
     quantity: item.quantity,
   };
+
   return (
-    <div className="w-full h-[50%] flex gap-5 p-2">
+    <div className=" w-full flex shrink flex-col lg:flex-row gap-4 p-3">
       <img
         src={item.image[item.color]}
-        className="rounded-2xl border border-gray-200 shadow-md"
+        alt={item.name}
+        className="w-full lg:w-40 lg:h-40 object-cover rounded-2xl border border-gray-200 shadow-md"
       />
-      <div className="w-[50%] ">
-        <div className="flex justify-between">
-          <p className="text-lg font-medium">{item.name}</p>
-          <p className="text-lg font-medium">GH₵{item.prices}</p>
+
+      <div className="flex flex-col w-full ">
+        <div className="flex justify-between items-start">
+          <p className="text-base lg:text-lg font-medium">{item.name}</p>
+          <p className="text-base lg:text-lg font-semibold">GH₵{item.prices}</p>
         </div>
-        <p className="text-lg font-medium">{item.category}</p>
-        <p className="text-md text-gray-500">{item.description}</p>
-        <p className="text-md text-gray-500">Size: {item.size}</p>
-        <p className="text-md text-gray-500">
+
+        <p className="text-sm lg:text-base font-medium">{item.category}</p>
+
+        <p className="text-sm text-gray-500 line-clamp-2">{item.description}</p>
+
+        <p className="text-sm text-gray-500">Size: {item.size}</p>
+
+        <p className="text-sm text-gray-500">
           Color: {item.colors[item.color]}
         </p>
-        <div className="flex gap-1 items-center">
-          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden w-fit shadow-sm mt-5">
+
+        <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
             <button
               className="px-3 py-2 hover:bg-gray-100 active:scale-95 transition"
               onClick={() => decreaseQuantity(cartData)}
@@ -51,10 +59,9 @@ const CartItem = ({ item }) => {
           </div>
           <button
             onClick={() => removeFromCart(cartData)}
-            className="mt-4 flex items-center gap-2 text-gray-500 hover:text-red-600 transition group"
+            className="flex items-center text-gray-500 hover:text-red-600 transition"
           >
-            <IoMdTrash className="text-3xl group-hover:scale-110 transition-transform" />
-            
+            <IoMdTrash className="text-2xl lg:text-3xl hover:scale-110 transition-transform" />
           </button>
         </div>
       </div>

@@ -109,7 +109,7 @@ const ProductsDetails = () => {
           </div>
 
           <button
-            className="mt-6 bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer"
+            className="my-6 bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition cursor-pointer"
             onClick={addItemToCart}
           >
             Add to Cart
