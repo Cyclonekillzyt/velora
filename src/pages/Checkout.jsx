@@ -2,7 +2,7 @@ import { useState } from "react";
 import { countries } from "../data/data.js";
 import { RiVisaLine } from "react-icons/ri";
 import { FaApplePay } from "react-icons/fa";
-import payPal from "../assets/PPlogo.png";
+import payPal from "../assets/PPlogo.webp";
 import { useCart } from "../contexts/CartContext.jsx";
 import CartItem from "../components/CartItem.jsx";
 import { deliveryServices } from "../data/data.js";

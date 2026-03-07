@@ -1,4 +1,4 @@
-import logo from "../assets/PPlogo.png";
+import logo from "../assets/PPlogo.webp";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 const PaymentSlip = ({ data }) => {
