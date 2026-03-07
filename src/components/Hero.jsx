@@ -1,16 +1,16 @@
-import model from "../assets/HeroImage.jpg"
+import model from "../assets/HeroImage.webp"
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const navigate = useNavigate();
   return (
     <div
-      className="w-full h-screen  flex px-20 pt-20 bg-cover"
+      className="w-full h-screen  flex px-20 pt-20 bg-cover  bg-gray-100 bg-no-repeat"
       style={{ backgroundImage: `url(${model})` }}
     >
-      {/*<div
-        className="fixed inset-0 bg-black/10  z-40 transition-opacity duration-300"
-      ></div>*/}
+      <div
+        className="absolute inset-0 bg-black/10  z-40 transition-opacity duration-300"
+      ></div>
 
       <div className="w-full h-full flex items-center justify-start">
         <div className="w-1/2 flex flex-col gap-5">
@@ -19,12 +19,15 @@ const Hero = () => {
             Discover the latest trends in fashion and elevate your style with
             our curated collection of clothing, accessories, and more.
           </p>
-          <button className="w-40 h-12 bg-amber-300 text-black font-medium rounded-md hover:bg-amber-500 transition-all cursor-pointer" onClick={() => navigate("/products")}> 
+          <button
+            className="w-40 h-12 bg-amber-300 text-black font-medium rounded-md hover:bg-amber-500 transition-all cursor-pointer"
+            onClick={() => navigate("/products")}
+          >
             Shop Now
           </button>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
 
