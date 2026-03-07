@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import products from "../data/data.js"
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const [checkoutStat, setCheckoutStat] = useState(false)
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
 
@@ -56,14 +58,28 @@ export const CartProvider = ({ children }) => {
     setCart((prev) => prev.filter((el) => !isSameitem(el, item)));
   };
 
+  const finalProduct = cart.map((el) => {
+    const productData = products.find((item) => item._id === el._id);
+    return {
+      ...productData,
+      size: el.size,
+      color: el.color,
+      quantity: el.quantity,
+    };
+  });
+
   return (
     <CartContext.Provider
       value={{
         cart,
+        setCart,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,
+        finalProduct,
+        checkoutStat,
+        setCheckoutStat,
       }}
     >
       {children}

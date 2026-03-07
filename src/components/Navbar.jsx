@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 
 const Navbar = () => {
-  const { cart } = useCart();
+  const { cart,  setCheckoutStat } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
@@ -19,6 +19,10 @@ const Navbar = () => {
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
+  const cartNavigate = () => {
+    navigate("/cart");
+    setCheckoutStat(false);
+  }
 
   return (
     <nav className="w-full h-16 bg-white/30 flex items-center justify-between px-4  gap-15 fixed z-999 shadow-md ">
@@ -50,7 +54,7 @@ const Navbar = () => {
       <div className="min-w-[30%] hidden lg:flex h-full  items-center justify-end  gap-10 pr-10">
         <div
           className="flex items-center gap-2 cursor-pointer relative"
-          onClick={() => navigate("/cart")}
+          onClick={cartNavigate}
         >
           <CiShoppingCart size="25" />
           {cart.length > 0 ? (
@@ -91,7 +95,7 @@ const Navbar = () => {
         <ul className="flex flex-col mt-2">
           <li
             className="flex items-center gap-4 px-8 py-5 border-b border-white/10 hover:bg-white/5 transition-colors cursor-pointer"
-            onClick={() => navigate("/cart")}
+            onClick={cartNavigate}
           >
             <CiShoppingCart size="25" />
             <p className="uppercase tracking-widest text-sm font-medium">

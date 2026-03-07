@@ -4,7 +4,12 @@ import { IoMdTrash } from "react-icons/io";
 import { useCart } from "../contexts/CartContext";
 
 const CartItem = ({ item }) => {
-  const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
+  const {
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+    checkoutStat,
+  } = useCart();
 
   const cartData = {
     _id: item._id,
@@ -24,7 +29,15 @@ const CartItem = ({ item }) => {
       <div className="flex flex-col w-full ">
         <div className="flex justify-between items-start">
           <p className="text-base lg:text-lg font-medium">{item.name}</p>
-          <p className="text-base lg:text-lg font-semibold">GH₵{item.prices}</p>
+          {checkoutStat ? (
+            <p className="text-base lg:text-lg font-semibold">
+              GH₵{item.prices}
+            </p>
+          ) : (
+            <p className="text-base lg:text-lg font-semibold">
+              GH₵{(item.prices * item.quantity).toLocaleString()}
+            </p>
+          )}
         </div>
 
         <p className="text-sm lg:text-base font-medium">{item.category}</p>
@@ -36,34 +49,37 @@ const CartItem = ({ item }) => {
         <p className="text-sm text-gray-500">
           Color: {item.colors[item.color]}
         </p>
+        {checkoutStat ? (
+          <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+              <button
+                className="px-3 py-2 hover:bg-gray-100 active:scale-95 transition"
+                onClick={() => decreaseQuantity(cartData)}
+              >
+                <LuMinus className="text-gray-600" />
+              </button>
 
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+              <span className="px-4 py-2 text-sm font-medium min-w-10 text-center">
+                {item.quantity}
+              </span>
+
+              <button
+                className="px-3 py-2 hover:bg-gray-100 active:scale-95 transition"
+                onClick={() => increaseQuantity(cartData)}
+              >
+                <GoPlus className="text-gray-600" />
+              </button>
+            </div>
             <button
-              className="px-3 py-2 hover:bg-gray-100 active:scale-95 transition"
-              onClick={() => decreaseQuantity(cartData)}
+              onClick={() => removeFromCart(cartData)}
+              className="flex items-center text-gray-500 hover:text-red-600 transition"
             >
-              <LuMinus className="text-gray-600" />
-            </button>
-
-            <span className="px-4 py-2 text-sm font-medium min-w-10 text-center">
-              {item.quantity}
-            </span>
-
-            <button
-              className="px-3 py-2 hover:bg-gray-100 active:scale-95 transition"
-              onClick={() => increaseQuantity(cartData)}
-            >
-              <GoPlus className="text-gray-600" />
+              <IoMdTrash className="text-2xl lg:text-3xl hover:scale-110 transition-transform" />
             </button>
           </div>
-          <button
-            onClick={() => removeFromCart(cartData)}
-            className="flex items-center text-gray-500 hover:text-red-600 transition"
-          >
-            <IoMdTrash className="text-2xl lg:text-3xl hover:scale-110 transition-transform" />
-          </button>
-        </div>
+        ) : (
+          <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+        )}
       </div>
     </div>
   );

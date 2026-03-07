@@ -4,11 +4,11 @@ import products from "../data/data";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("All");
   const filteredProducts =
-    category === "all"
+    category === "All"
       ? products
-      : category === "new"
+      : category === "New"
         ? products.filter((p) => p.isNew)
         : products.filter((p) => p.category === category);
 

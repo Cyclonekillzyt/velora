@@ -5,7 +5,7 @@ const FilterBar = () => {
   const { setCategory, category } = useApp();
 
   function filter(value) {
-    setCategory(value.toLowerCase());
+    setCategory(value);
   }
   function filterButton(text, index) {
     return (
