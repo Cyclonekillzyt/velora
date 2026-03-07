@@ -49,7 +49,7 @@ const CartItem = ({ item }) => {
         <p className="text-sm text-gray-500">
           Color: {item.colors[item.color]}
         </p>
-        {checkoutStat ? (
+        {!checkoutStat ? (
           <div className="flex items-center justify-between mt-4">
             <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
               <button
