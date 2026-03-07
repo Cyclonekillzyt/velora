@@ -1,4 +1,4 @@
-import velora from "../assets/velora.png";
+import velora from "../assets/velora.webp";
 import { useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
